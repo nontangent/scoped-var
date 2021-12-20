@@ -1,0 +1,29 @@
+@use 'utilities' as *;
+
+$strict: false !default;
+$production: false !default;
+
+$_variable-names: ();
+
+@function is-defined($name) {
+  @if index($_variable-names, $name) == null { @return true; } @else { @return false; }
+}
+
+@mixin scoped-var($scope, $name, $value: inherit) {
+  $scoped-name: build-variable-name($scope, $name, $production);
+  $_variable-names: append($_variable-names, $scoped-name) !global; 
+
+  #{$name}: $value;
+  #{$scoped-name}: unquote("var(#{$name})");
+}
+
+@function scoped-var($scope, $name) {
+  $scoped-name: build-variable-name($scope, $name, $production);
+  
+  @if is-defined($scoped-name) {
+    @if $strict { @error unquote("`var(#{$name})` scoped in `#{$scope}` is not defined at"); }
+    @return var(#{$name});
+  }
+  
+  @return unquote("var(#{$scoped-name})");
+}

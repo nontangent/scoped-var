@@ -1,0 +1,33 @@
+@use 'true' as *;
+@use '../strict' as * with ($host: 'test', $suffix: '');
+
+:host {
+  @include var(--defined-color, red);
+}
+
+@include describe('@use \'scoped-bar/strict\' as *;') {
+  @include describe('var(--defined-color)') {   
+    @include it('should equal `--defined-color-SCOPED-IN-test`') {
+      @include assert-equal(var(--defined-color), unquote("var(--defined-color-SCOPED-IN-test)"));
+    } 
+  }
+    
+  @include describe('@mixin var()') {
+    @include it('should be success') {
+      @include assert {
+        @include output {
+          :host {
+            @include var(--color, red);
+          }
+        }
+  
+        @include expect {
+          :host {
+            --color: red;
+            --color-SCOPED-IN-test: var(--color);
+          }
+        }
+      }
+    }
+  }
+}

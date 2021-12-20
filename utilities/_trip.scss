@@ -1,0 +1,3 @@
+@function trip($str, $len: 2) {
+  @return str-slice($str, $len + 1);
+}

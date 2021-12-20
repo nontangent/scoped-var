@@ -1,0 +1,16 @@
+@use './get-char' as *;
+@use './random-str' as *;
+
+@function make-suffix($host, $suffix) {
+  @return randomize($suffix);
+}
+
+@function randomize($input) {
+	$str: "";
+	@for $i from 1 through str-length($input) {
+		$char: get-char($input, $i);
+		@if ($char == "@") { $str: $str + random-str(1); }
+		@else { $str: $str + $char; }
+	}
+	@return $str;
+}

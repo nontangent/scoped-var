@@ -1,0 +1,12 @@
+@use 'utilities' as *;
+
+$host: '' !default;
+$suffix: "@@@@" !default;
+$_suffix: make-suffix($host, $suffix); 
+$scope: get-scope($host, $_suffix) !default;
+$strict: false !default;
+
+@use './scoped-var' as _ with ($strict: $strict);
+
+@mixin var($name, $value: inherit) { @include _.scoped-var($scope, $name, $value); }
+@function var($name) { @return _.scoped-var($scope, $name); }

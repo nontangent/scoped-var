@@ -1,0 +1,7 @@
+@use './make-suffix' as *;
+
+@function get-scope($name, $suffix: "@@@@", $len: 4) {
+	@if ($name == "") { @return $suffix; }
+	@else if ($suffix == "") { @return "#{$name}"; }
+	@else { @return "#{$name}-#{$suffix}"; }
+}

@@ -1,0 +1,6 @@
+@use './trip' as *;
+
+@function build-variable-name($scope, $variable, $theta: false) {
+  @if ($theta) { @return --#{trip($variable, 2)}-θ-#{$scope}; }
+  @else { @return --#{trip($variable, 2)}-SCOPED-IN-#{$scope}; }
+}

@@ -1,0 +1,3 @@
+@function get-char($str, $i) {
+  @return str-slice($str, $i, $i);
+}

@@ -1,0 +1,9 @@
+$CHARACTERS_STRING: "0123456789abcdefghijklmnopqrstuvwxyz";
+$CHARACTERS: ();
+@for $i from 1 through 36 { $CHARACTERS: append($CHARACTERS, str-slice($CHARACTERS_STRING, $i, $i)); }
+
+@function random-str($len: 1) {
+	$str: "";
+	@for $i from 1 through $len { $str: $str + nth($CHARACTERS, random(36)); }
+	@return $str;
+}
