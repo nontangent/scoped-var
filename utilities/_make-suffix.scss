@@ -2,6 +2,7 @@
 @use './random-str' as *;
 
 @function make-suffix($host, $suffix) {
+	@if ($host == '') { @return randomize("@@@@@@@@"); }
   @return randomize($suffix);
 }
 
