@@ -1,11 +1,1 @@
-@use './utilities' as *;
-
-$host: '' !default;
-$suffix: "@@@@@@" !default;
-$_suffix: make-suffix($host, $suffix); 
-$scope: get-scope($host, $_suffix) !default;
-
-@use './index' as _ with ($host: $host, $suffix: $suffix, $scope: $scope, $strict: true);
-
-@mixin var($args...) { @include _.var($args...); }
-@function var($args...) { @return _.var($args...); }
+@forward './index' with ($strict: true);

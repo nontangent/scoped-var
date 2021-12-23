@@ -2,7 +2,7 @@
 
 $host: '' !default;
 $suffix: "@@@@" !default;
-$_suffix: make-suffix($host, $suffix); 
+$_suffix: make-suffix($host, $suffix);
 $scope: get-scope($host, $_suffix) !default;
 $strict: false !default;
 
