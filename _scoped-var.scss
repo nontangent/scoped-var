@@ -9,9 +9,15 @@ $_variable-names: ();
   @if index($_variable-names, $name) == null { @return true; } @else { @return false; }
 }
 
+@function register-variable($scope, $name) {
+  $scoped-name: build-variable-name($scope, $name, $production);
+  $_variable-names: append($_variable-names, $scoped-name) !global;
+  @return true;
+}
+
 @mixin scoped-var($scope, $name, $value: inherit) {
   $scoped-name: build-variable-name($scope, $name, $production);
-  $_variable-names: append($_variable-names, $scoped-name) !global; 
+  $__call: register-variable($scope, $name);
 
   #{$name}: $value;
   #{$scoped-name}: unquote("var(#{$name})");
