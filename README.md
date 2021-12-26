@@ -21,7 +21,7 @@ If you want to let custom properties scoped in `:host`, you should add `@use 'sc
 
 :host {
   // Define host scoped variable by `@mixin var($name, $value)`
-  @include var(--color, red);
+  @include property(--color, red);
 }
 
 :host {
@@ -52,7 +52,7 @@ In this case, you can override `:host` scoped custom property in `first-child` a
 @use 'scoped-var' as *;
 
 :host {
-  @include var(--color, blue);
+  @include property(--color, blue);
 }
 
 :host {
