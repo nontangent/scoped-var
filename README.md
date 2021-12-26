@@ -1,6 +1,12 @@
 # Scoped Var
 This is a sass library that enables to limit the scope of custom properties(which is called `CSS Variable`) to `:host`.
 
+# Demo
+https://nontangent.github.io/angular-scoped-var-demo/
+
+source: https://github.com/nontangent/angular-scoped-var-demo
+
+
 ## Install
 ```sh
 $ npm i -D scoped-var
