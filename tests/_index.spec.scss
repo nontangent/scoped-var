@@ -5,7 +5,7 @@
   @include var(--defined-color, red);
 }
 
-@include describe('@use \'scoped-bar\' as *;') {
+@include describe('@use \'scoped-var\' as *;') {
   @include describe('var(--defined-color)') {   
     @include it('should equal `--defined-color-SCOPED-IN-test`') {
       @include assert-equal(var(--defined-color), unquote("var(--defined-color-SCOPED-IN-test)"));
@@ -30,6 +30,24 @@
         @include expect {
           :host {
             --color: red;
+            --color-SCOPED-IN-test: var(--color);
+          }
+        }
+      }
+    }
+  }
+
+  @include describe('@mixin external-var($name)') {
+    @include it('should be success') {
+      @include assert {
+        @include output {
+          :host {
+            @include external-property(--color);
+          }
+        }
+
+        @include expect {
+          :host {
             --color-SCOPED-IN-test: var(--color);
           }
         }

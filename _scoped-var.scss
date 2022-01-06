@@ -33,3 +33,10 @@ $_variable-names: ();
   
   @return unquote("var(#{$scoped-name})");
 }
+
+@mixin external-property($scope, $name) {
+  $scoped-name: build-variable-name($scope, $name, $production);
+  $__call: register-variable($scope, $name);
+
+  #{$scoped-name}: unquote("var(#{$name})");
+}

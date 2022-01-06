@@ -8,7 +8,7 @@ $strict: false !default;
 
 @use './scoped-var' as _ with ($strict: $strict);
 
-@mixin external-property($name) { $__call: _.register-variable($scope, $name) }
+@mixin external-property($name) { @include _.external-property($scope, $name); }
 @mixin property($name, $value: inherit) { @include _.scoped-var($scope, $name, $value); }
 @mixin var($args...) { @include property($args...); }
 @function var($name) { @return _.scoped-var($scope, $name); }
