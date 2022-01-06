@@ -20,7 +20,7 @@ If you want to let custom properties scoped in `:host`, you should add `@use 'sc
 @use 'scoped-var' as *;
 
 :host {
-  // Define host scoped variable by `@mixin var($name, $value)`
+  // Define host scoped variable by `@mixin property($name, $value)`
   @include property(--color, red);
 }
 
@@ -96,6 +96,22 @@ In this case, you failed to compile and compiler throw following error.
 ```
 SassError: `var(--color)` scoped in `9unvsa3y` is not defined`
 ```
+
+If you use external property in strict mode, you should use `@mixin external-property($name)`.
+
+```scss
+@use 'scoped-var/strict' as *;
+
+:host {
+  @include external-property(--color);
+}
+
+:host {
+  color: var(--color);
+}
+```
+
+In this case, no error was thrown.
 
 ## LICENSE
 MIT
